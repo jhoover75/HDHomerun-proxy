@@ -1,0 +1,18 @@
+<VirtualHost *:8888>
+  ProxyRequests Off
+  ProxyVia Off
+    <Proxy *>
+     Order deny,allow
+     Allow from all
+    </Proxy>
+  ProxyPass /auto http://IPADDR:5004/auto
+  ProxyPassReverse /auto http://IPADDR:5004/auto
+  <Location />
+    Order allow,deny
+    Allow from all
+  </Location>
+  LogLevel info
+  CustomLog /hdhomerun/apachelogs/access.log combined
+  ErrorLog /hdhomerun/apachelogs/error.log
+</VirtualHost>
+
